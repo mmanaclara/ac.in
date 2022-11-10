@@ -14,8 +14,7 @@ export const FormContainer = styled.form`
 export const InputField = styled.div`
     border: 1px solid ${(props) => props.theme['gray-500']};
     border-radius: 4px;
-    padding: 0.6rem;
-    gap: 0.6rem;
+    padding-left: 1.2rem;
 
     display: flex;
     justify-content: flex-start;

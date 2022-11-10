@@ -1,5 +1,6 @@
-import { User, EnvelopeSimple, Phone, IdentificationCard } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import { User, EnvelopeSimple, Phone, IdentificationCard, Target } from 'phosphor-react'
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
@@ -34,7 +35,11 @@ export function UserInfoForm() {
     reset();
     setPhone('')
     setCpf('')
+
+    navigate('/destination')
   }
+
+  const navigate = useNavigate();
 
   return (
     <FormContainer onSubmit={handleSubmit(handleSendUserInfo)} ref={form}>
@@ -97,9 +102,9 @@ export function UserInfoForm() {
         </label>
         {errors.cpf?.message && <span>{errors.cpf?.message}</span>}
 
-            <SendUserInfoButton type="submit">
-                Enviar
-            </SendUserInfoButton>
+        <SendUserInfoButton type="submit">
+            Enviar
+        </SendUserInfoButton>
     </FormContainer>
   )
 }
