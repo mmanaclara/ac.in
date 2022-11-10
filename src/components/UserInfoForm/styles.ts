@@ -4,6 +4,12 @@ export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+
+    > span {
+        color: ${(props) => props.theme['red-500']};
+        font-size: 1.4rem;
+        margin-block: -1rem;
+    }
 `
 
 export const InputField = styled.div`
