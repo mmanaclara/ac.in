@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         background: ${(props) => props.theme['gray-100']} url(${bgPattern}) no-repeat;
+        background-size: cover;
         color: ${(props) => props.theme['gray-700']};
         -webkit-font-smoothing: antialiased;
     }

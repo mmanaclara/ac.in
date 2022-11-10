@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const HeroContainer = styled.main`
+export const HomeContainer = styled.main`
     height: 100vh;
     padding-top: 7rem;
 
@@ -14,7 +14,6 @@ export const Wrapper = styled.div`
 
     max-width: min(118rem, 100%);
     margin-inline: auto;
-    /* margin-block: auto; */
 `
 
 export const TextContainer = styled.div`

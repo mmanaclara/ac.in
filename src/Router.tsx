@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { PersonalInfo } from './pages/PersonalInfo'
 import { Destination } from './pages/Destination'
-import { DefaultLayout } from './components/layouts/DefaultLayout'
+import { DefaultLayout } from './layouts/DefaultLayout'
 
 export function Router() {
     return (
