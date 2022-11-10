@@ -10,7 +10,7 @@ export function UserInfoForm() {
             Nome
             <InputField>
                 <User size={20} weight="bold" />
-                <input type="text" placeholder="Digite o seu nome" />
+                <input type="text" placeholder="Digite o seu nome" autoFocus />
             </InputField>
         </label>
 
