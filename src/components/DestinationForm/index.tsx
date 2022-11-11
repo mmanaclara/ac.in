@@ -1,6 +1,8 @@
 import { ChatTeardropDots, GlobeSimple, Factory } from 'phosphor-react'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
+import AsyncSelect from 'react-select/async';
+import { useCountries } from '../../hooks/useCountries'
 
 import { FormContainer, InputField, SendUserInfoButton } from './styles'
 
@@ -17,6 +19,8 @@ export function DestinationForm() {
     { value: 'ARA', label: 'Árabe' },
     { value: 'RUS', label: 'Russo' },
   ]  
+
+  const { countries, loadOptions, filterCountries } = useCountries(`/country?sort=name_ptbr`)
   
   const customStyles = {
     option: (provided: any, state: { isSelected: any, isFocused: any }) => ({
@@ -69,13 +73,15 @@ export function DestinationForm() {
 
         <span>Onde você quer viver a sua próxima aventura?</span>
 
-        <label>
+        <AsyncSelect placeholder="Selecione um ou mais países" isMulti cacheOptions defaultOptions loadOptions={loadOptions} />
+
+        {/* <label>
             País
             <InputField>
                 <GlobeSimple size={20} weight="bold" />
                 <Select
                     name="colors"
-                    options={languageOptions}
+                    options={countries}
                     placeholder="Selecione um ou mais países"
                     styles={customStyles}
                     theme={(theme) => ({
@@ -89,8 +95,9 @@ export function DestinationForm() {
                         },
                       })}
                 />
+
             </InputField>
-        </label>
+        </label> */}
 
         <label>
             Cidade
@@ -120,6 +127,12 @@ export function DestinationForm() {
             Enviar
             </SendUserInfoButton>
         </Link>
+
+        {/* <select>
+          {countries.map(country => (
+            <option value={country.name_ptbr}>{country.name_ptbr}</option>
+          ))}
+        </select> */}
     </FormContainer>
   )
 }

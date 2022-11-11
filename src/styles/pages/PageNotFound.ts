@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.main`
+export const PageNotFoundContainer = styled.main`
     height: 100vh;
     padding-top: 7rem;
     max-width: 1600px;
@@ -10,7 +10,7 @@ export const HomeContainer = styled.main`
 
 export const Wrapper = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
     max-width: min(118rem, 100%);
@@ -18,13 +18,13 @@ export const Wrapper = styled.div`
 `
 
 export const TextContainer = styled.div`
-    width: 50%;
+width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 2.4rem;
+    gap: 1.6rem;
 
     h1 {
-        font-size: 4.8rem;
+        font-size: 9.6rem;
     }
 
     span {
@@ -39,12 +39,13 @@ export const TextContainer = styled.div`
         width: 33.4rem;
         border-radius: 4px;
         padding-block: 1.2rem;
-        margin-top: 2.4rem;
+        margin-top: 3.6rem;
         box-shadow: 4px 4px 4px rgba(0,0,0,0.15);
 
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 1.2rem;
 
         text-transform: uppercase;
         font-weight: 600;
@@ -63,6 +64,6 @@ export const TextContainer = styled.div`
 export const ImageContainer = styled.div`
     img {
         width: 100%;
-        max-width: 49.8rem;
+        max-width: 34rem;
     }
 `

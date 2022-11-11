@@ -57,6 +57,7 @@ export const SendUserInfoButton = styled.button`
     border-radius: 4px;
     margin-top: 2.4rem;
     width: 100%;
+    box-shadow: 2px 3px 4px rgba(0,0,0,0.15);
 
     text-transform: uppercase;
     color: ${(props) => props.theme['gray-900']};
@@ -65,4 +66,11 @@ export const SendUserInfoButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: all 0.2s;
+
+    :hover {
+        background: ${props => props.theme['yellow-700']};
+        transform: translateY(1.1);
+    }
 `

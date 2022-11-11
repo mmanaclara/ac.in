@@ -55,6 +55,7 @@ export const SendUserInfoButton = styled.button`
     border-radius: 4px;
     margin-top: 2.4rem;
     width: 100%;
+    box-shadow: 2px 3px 4px rgba(0,0,0,0.15);
 
     text-transform: uppercase;
     color: ${(props) => props.theme['gray-900']};
