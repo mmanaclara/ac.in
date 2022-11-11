@@ -64,4 +64,13 @@ export const SendUserInfoButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    :disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+
+    :hover:not(:disabled) {
+        background-color: ${(props) => props.theme['yellow-700']};
+    }
 `

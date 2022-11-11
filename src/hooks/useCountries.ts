@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { api } from '../lib/axios'
 
-interface Countries {
-    name: string;
+interface Countries<
+  Option = unknown,
+  IsMulti extends boolean = false,
+> {
     name_ptbr: string;
     code: string;
   }
@@ -11,42 +13,32 @@ export function useCountries(url: string) {
     const [countries, setCountries] = useState<Countries[]>([])
     const [error, setError] = useState<Error | null>(null)
 
-    const filterCountries = (inputValue: string) => {
-        return countries.filter((i) =>
-        i.name_ptbr.toLowerCase().includes(inputValue.toLowerCase())
-        );
-    };
-    
-    const loadOptions = (
-        inputValue: string,
-        callback: (options: any) => void
-      ) => {
-        setTimeout(() => {
-            return callback(countries.map(i => ({ label: i.name_ptbr, value: i.name_ptbr })));
-        }, 1000);
-      };
-
-      async function fetchCountries(query?: string) {
-        const APIresponse = await api.get(url, {
-            params: {
-              _sort: 'name_ptbr',
-              _order: 'name_ptbr',
-              q: query,
-            }
-        })
-
+    async function fetchCountries() {
+        await api.get(url)
             .then(response => {
-                setCountries(response.data.slice(0,10))
-                console.log(countries)
+                setCountries(response.data.map((i: any) => ({ label: i.name_ptbr, value: i.code })))
             })
             .catch(err => {
                 setError(err)
             })
-      }
+    }
+
+    const loadOptions = (
+        inputValue: string,
+        callback: (options: any) => void
+    ) => {
+        setTimeout(() => {
+            callback(countries.map(i => ({ label: i.name_ptbr, value: i.code })))
+        }, 1000);
+
+        countries.filter((countryName) =>
+        countryName.name_ptbr.toLowerCase().includes(inputValue.toLowerCase())
+        );
+    };
 
     useEffect(() => {
         fetchCountries()
     }, [])
 
-    return { countries, loadOptions, filterCountries, error };
+    return { countries, fetchCountries, loadOptions, error };
 }

@@ -1,27 +1,23 @@
 import { ChatTeardropDots, GlobeSimple, Factory } from 'phosphor-react'
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import Select from 'react-select'
-import AsyncSelect from 'react-select/async';
-import { useCountries } from '../../hooks/useCountries'
 
-import { FormContainer, InputField, SendUserInfoButton } from './styles'
+import Select from 'react-select'
+import { languageOptions } from '../../docs/LanguageOptions'
+import AsyncSelect from 'react-select/async';
+
+import { useCountries } from '../../hooks/useCountries'
+import { useCities } from '../../hooks/useCities'
+
+import { FormContainer, InputField, SendUserInfoButton } from './styles' 
 
 export function DestinationForm() {
-  const languageOptions = [
-    { value: 'ENG', label: 'Inglês' },
-    { value: 'CHI', label: 'Chinês' },
-    { value: 'ESP', label: 'Espanhol' },
-    { value: 'ITA', label: 'Italiano' },
-    { value: 'FRA', label: 'Francês' },
-    { value: 'DEU', label: 'Alemão' },
-    { value: 'JAP', label: 'Japonês' },
-    { value: 'COR', label: 'Coreano' },
-    { value: 'ARA', label: 'Árabe' },
-    { value: 'RUS', label: 'Russo' },
-  ]  
+  const { countries, fetchCountries } = useCountries('/country')
+  const { cities, fetchCities, loadCityOptions } = useCities('/city')
 
-  const { countries, loadOptions, filterCountries } = useCountries(`/country?sort=name_ptbr`)
-  
+  const [isSearchable, setIsSearchable] = useState(true)
+  const [selectedOption, setSelectedOption] = useState(null);
+
   const customStyles = {
     option: (provided: any, state: { isSelected: any, isFocused: any }) => ({
       ...provided,
@@ -52,7 +48,7 @@ export function DestinationForm() {
             <InputField>
                 <ChatTeardropDots size={20} weight="bold" />
                 <Select
-                    name="colors"
+                    name="language"
                     options={languageOptions}
                     placeholder="Selecione o idioma do curso"
                     styles={customStyles}
@@ -73,66 +69,74 @@ export function DestinationForm() {
 
         <span>Onde você quer viver a sua próxima aventura?</span>
 
-        <AsyncSelect placeholder="Selecione um ou mais países" isMulti cacheOptions defaultOptions loadOptions={loadOptions} />
-
-        {/* <label>
+        <label>
             País
             <InputField>
                 <GlobeSimple size={20} weight="bold" />
                 <Select
-                    name="colors"
-                    options={countries}
-                    placeholder="Selecione um ou mais países"
-                    styles={customStyles}
-                    theme={(theme) => ({
-                        ...theme,
-                        colors: {
-                          ...theme.colors,
-                          primary: '#FFF8DE',
-                          primary25: '#FFF8DE',
-                          primary50: '#FFF8DE',
-                          neutral20: '#707175',
-                        },
-                      })}
+                  name="countries"
+                  isMulti
+                  defaultValue={selectedOption}
+                  onChange={(e: any) => setSelectedOption(e)}
+                  options={countries}
+                  placeholder="Selecione um ou mais países"
+                  isSearchable={isSearchable}
+                  styles={customStyles}
+                  theme={(theme) => ({
+                      ...theme,
+                      colors: {
+                        ...theme.colors,
+                        primary: '#FFF8DE',
+                        primary25: '#FFF8DE',
+                        primary50: '#FFF8DE',
+                        neutral20: '#707175',
+                      },
+                    })
+                  }
                 />
 
             </InputField>
-        </label> */}
+        </label>
 
         <label>
             Cidade
             <InputField>
                 <Factory size={20} weight="bold" />
                 <Select
-                    name="colors"
-                    options={languageOptions}
-                    placeholder="Selecione uma ou mais cidades"
-                    styles={customStyles}
-                    theme={(theme) => ({
-                        ...theme,
-                        colors: {
-                          ...theme.colors,
-                          primary: '#FFF8DE',
-                          primary25: '#FFF8DE',
-                          primary50: '#FFF8DE',
-                          neutral20: '#707175',
-                        },
-                      })}
+                  name="cities"
+                  isMulti
+                  defaultValue={selectedOption}
+                  onChange={(e: any) => setSelectedOption(e)}
+                  options={cities}
+                  placeholder="Selecione um ou mais países"
+                  isSearchable={isSearchable}
+                  styles={customStyles}
+                  theme={(theme) => ({
+                      ...theme,
+                      colors: {
+                        ...theme.colors,
+                        primary: '#FFF8DE',
+                        primary25: '#FFF8DE',
+                        primary50: '#FFF8DE',
+                        neutral20: '#707175',
+                      },
+                    })
+                  }
                 />
             </InputField>
         </label>
 
         <Link to="/destination">
-            <SendUserInfoButton>
+          <SendUserInfoButton disabled>
             Enviar
-            </SendUserInfoButton>
+          </SendUserInfoButton>
         </Link>
+    </FormContainer>
+  )
+}
 
         {/* <select>
           {countries.map(country => (
             <option value={country.name_ptbr}>{country.name_ptbr}</option>
           ))}
         </select> */}
-    </FormContainer>
-  )
-}
