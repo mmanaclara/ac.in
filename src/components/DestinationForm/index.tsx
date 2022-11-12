@@ -15,6 +15,8 @@ export function DestinationForm() {
   const { countries, fetchCountries } = useCountries('/country')
   const { cities, fetchCities, loadCityOptions } = useCities('/city')
 
+  console.log(countries)
+
   const [isSearchable, setIsSearchable] = useState(true)
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -49,6 +51,7 @@ export function DestinationForm() {
                 <ChatTeardropDots size={20} weight="bold" />
                 <Select
                     name="language"
+                    classNamePrefix='responsive'
                     options={languageOptions}
                     placeholder="Selecione o idioma do curso"
                     styles={customStyles}

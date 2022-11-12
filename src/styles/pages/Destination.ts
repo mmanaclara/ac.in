@@ -12,6 +12,10 @@ export const DestinationContainer = styled.main`
 
 export const Wrapper = styled.div`
     width: 50%;
+
+    @media (max-width: 820px) {
+        width: 100%;
+    }
 `
 
 export const TextContainer = styled.div`
@@ -51,6 +55,10 @@ export const ImageContainer = styled.div`
     justify-content: flex-end;
 
     img {
-        /* height: 99.8vh; */
+        width: 100%;
+    }
+
+    @media (max-width: 820px) {
+        display: none;
     }
 `

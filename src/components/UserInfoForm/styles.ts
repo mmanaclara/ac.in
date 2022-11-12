@@ -48,6 +48,15 @@ export const InputField = styled.div`
             box-shadow: 0 0 0 0 transparent;
         }
     }
+
+    @media (width: 375px) {
+        width: 28rem;
+    }
+
+    @media (width: 360px) {
+        width: 28rem;
+        margin-inline: auto;
+    }
 `
 
 export const SendUserInfoButton = styled.button`
@@ -72,5 +81,10 @@ export const SendUserInfoButton = styled.button`
     :hover {
         background: ${props => props.theme['yellow-700']};
         transform: translateY(1.1);
+    }
+
+    @media (width: 360px) {
+        width: 95%;
+        margin-inline: auto;
     }
 `

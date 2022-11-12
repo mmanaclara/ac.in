@@ -12,6 +12,10 @@ export const UserInfoContainer = styled.main`
 
 export const Wrapper = styled.div`
     width: 50%;
+
+    @media (max-width: 820px) {
+        width: 100%;
+    }
 `
 
 export const TextContainer = styled.div`
@@ -42,6 +46,18 @@ export const TextContainer = styled.div`
             font-family: Roboto, sans-serif;
         }
     }
+
+    @media (width: 380px) {
+        width: 30rem;
+    }
+
+    @media (width: 375px) {
+        width: 80%;
+    }
+
+    @media (width: 360px) {
+        width: 80%;
+    }
 `
 
 export const ImageContainer = styled.div`
@@ -51,6 +67,11 @@ export const ImageContainer = styled.div`
     justify-content: flex-end;
 
     img {
-        /* height: 99.8vh; */
+        width: 100%;
     }
+
+    @media (max-width: 820px) {
+        display: none;
+    }
+
 `

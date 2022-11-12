@@ -15,6 +15,14 @@ export const Wrapper = styled.div`
 
     max-width: min(118rem, 100%);
     margin-inline: auto;
+
+    @media (max-width: 912px) {
+        flex-direction: column;
+        max-height: min(100rem, 100%);
+        justify-content: center;
+        margin-block: auto;
+        text-align: center;
+    }
 `
 
 export const TextContainer = styled.div`
@@ -59,11 +67,53 @@ width: 50%;
             transform: translateY(1.1);
         }
     }
+
+    @media (max-width: 912px) {
+        width: 65%;
+
+        h1 {
+            font-size: 8rem;
+        }
+
+        a {
+            align-self: center;
+        }
+    }
+
+    @media (max-width: 820px) {
+        h1 {
+            font-size: 7.2rem;
+        }
+    }
+
+    @media (max-width: 540px) {
+        gap: 0;
+
+        h1 {
+            font-size: 6rem;
+        }
+
+        span {
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+        }
+
+        a {
+            padding-block: 1rem; 
+            padding-inline: 1.2rem;
+            width: 24rem;
+            font-size: 1.6rem;
+        }
+    }
 `
 
 export const ImageContainer = styled.div`
     img {
         width: 100%;
         max-width: 34rem;
+    }
+
+    @media (max-width: 912px) {
+        width: 65%;
     }
 `
