@@ -23,22 +23,9 @@ export function useCountries(url: string) {
             })
     }
 
-    const loadOptions = (
-        inputValue: string,
-        callback: (options: any) => void
-    ) => {
-        setTimeout(() => {
-            callback(countries.map(i => ({ label: i.name_ptbr, value: i.code })))
-        }, 1000);
-
-        countries.filter((countryName) =>
-        countryName.name_ptbr.toLowerCase().includes(inputValue.toLowerCase())
-        );
-    };
-
     useEffect(() => {
         fetchCountries()
     }, [])
 
-    return { countries, fetchCountries, loadOptions, error };
+    return { countries, fetchCountries, error };
 }

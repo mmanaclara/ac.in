@@ -1,11 +1,23 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Loading } from '../components/Loading'
 
 import { HomeContainer, Wrapper, TextContainer, ImageContainer} from '../styles/pages/Home'
 
 import girl from '../assets/mulher-segurando-o-passaporte-em-uma-mao-e-um-globo-terrestre-na-outra.png'
 
 export function Home() {
-  return (
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  return !isLoading ? (
     <HomeContainer>
         <Wrapper>
             <TextContainer>
@@ -25,6 +37,8 @@ export function Home() {
             </ImageContainer>
         </Wrapper>
     </HomeContainer>
+  ) : (
+    <Loading />
   )
 }
 

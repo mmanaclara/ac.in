@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom'
 
 import Select from 'react-select'
 import { languageOptions } from '../../docs/LanguageOptions'
-import AsyncSelect from 'react-select/async';
 
 import { useCountries } from '../../hooks/useCountries'
 import { useCities } from '../../hooks/useCities'
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 import { FormContainer, InputField, SendUserInfoButton } from './styles' 
 
 export function DestinationForm() {
-  const { countries, fetchCountries } = useCountries('/country')
-  const { cities, fetchCities, loadCityOptions } = useCities('/city')
-
-  console.log(countries)
-
-  const [isSearchable, setIsSearchable] = useState(true)
-  const [selectedOption, setSelectedOption] = useState(null);
+  const { countries } = useCountries('/country')
+  const { cities } = useCities('/city')
+  
+  const [language, setLanguage] = useState(null)
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   const customStyles = {
     option: (provided: any, state: { isSelected: any, isFocused: any }) => ({
@@ -43,17 +43,27 @@ export function DestinationForm() {
     }
   }
 
+  const form = useRef<any>();
+  console.log(language)
+
+  function handleSendDestination() {
+    navigate('/success')
+  }
+
+  const navigate = useNavigate();
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSendDestination} ref={form}>
         <label>
             Idioma
             <InputField>
                 <ChatTeardropDots size={20} weight="bold" />
                 <Select
                     name="language"
-                    classNamePrefix='responsive'
                     options={languageOptions}
                     placeholder="Selecione o idioma do curso"
+                    value={language}
+                    onChange={(e: any) => setLanguage(e)}
                     styles={customStyles}
                     autoFocus
                     theme={(theme) => ({
@@ -79,11 +89,10 @@ export function DestinationForm() {
                 <Select
                   name="countries"
                   isMulti
-                  defaultValue={selectedOption}
-                  onChange={(e: any) => setSelectedOption(e)}
+                  defaultValue={selectedCountry}
+                  onChange={(e: any) => setSelectedCountry(e)}
                   options={countries}
                   placeholder="Selecione um ou mais países"
-                  isSearchable={isSearchable}
                   styles={customStyles}
                   theme={(theme) => ({
                       ...theme,
@@ -108,11 +117,10 @@ export function DestinationForm() {
                 <Select
                   name="cities"
                   isMulti
-                  defaultValue={selectedOption}
-                  onChange={(e: any) => setSelectedOption(e)}
+                  defaultValue={selectedCity}
+                  onChange={(e: any) => setSelectedCity(e)}
                   options={cities}
                   placeholder="Selecione um ou mais países"
-                  isSearchable={isSearchable}
                   styles={customStyles}
                   theme={(theme) => ({
                       ...theme,
@@ -130,16 +138,10 @@ export function DestinationForm() {
         </label>
 
         <Link to="/destination">
-          <SendUserInfoButton disabled>
+          <SendUserInfoButton type="submit">
             Enviar
           </SendUserInfoButton>
         </Link>
     </FormContainer>
   )
 }
-
-        {/* <select>
-          {countries.map(country => (
-            <option value={country.name_ptbr}>{country.name_ptbr}</option>
-          ))}
-        </select> */}

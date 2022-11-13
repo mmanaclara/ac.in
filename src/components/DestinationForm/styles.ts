@@ -46,16 +46,6 @@ export const InputField = styled.div`
             box-shadow: 0 0 0 0 transparent;
         }
     }
-
-    .responsive {
-        @media (width: 375px) {
-            width: 40%;
-
-            label {
-                width: 20rem;
-            }
-        }
-    }
 `
 
 export const SendUserInfoButton = styled.button`

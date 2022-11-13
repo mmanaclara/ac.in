@@ -1,11 +1,10 @@
-import { User, EnvelopeSimple, Phone, IdentificationCard, Target } from 'phosphor-react'
-import { Link } from "react-router-dom";
+import { User, EnvelopeSimple, Phone, IdentificationCard } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import Mask from '../../mask';
 
 import { FormContainer, InputField, SendUserInfoButton } from './styles'
@@ -13,8 +12,8 @@ import { FormContainer, InputField, SendUserInfoButton } from './styles'
 const submitFormValidationSchema = zod.object({
     name: zod.string().min(3, "Nome é obrigatório"),
     email: zod.string().email({ message: 'Email é obrigatório'}).min(5, { message: "Formato de e-mail inválido"}),
-    phone: zod.string().nonempty({ message: "Telefone é obrigatório"}).length(15, { message: "Seu telefone precisa ter 11 dígitos"}),
-    cpf: zod.string().nonempty({ message: "CPF é obrigatório"}).length(14, { message: "Seu CPF precisa ter 11 dígitos"})
+    phone: zod.string().nonempty({ message: "Telefone é obrigatório"} ).length(15, { message: "Seu telefone precisa ter 11 dígitos"}),
+    cpf: zod.string().nonempty({ message: "CPF é obrigatório"} ).length(14, { message: "Seu CPF precisa ter 11 dígitos"})
   })
 
 type IFormInputsData = zod.infer<typeof submitFormValidationSchema>
@@ -23,7 +22,7 @@ export function UserInfoForm() {
     const [phone, setPhone] = useState('')
     const [cpf, setCpf] = useState('')
 
-    const { register, handleSubmit, formState: { errors }, formState, reset } = useForm<IFormInputsData>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<IFormInputsData>({
         resolver: zodResolver(submitFormValidationSchema)
       });
 
