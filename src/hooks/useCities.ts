@@ -6,6 +6,7 @@ interface Cities<
   Option = unknown,
   IsMulti extends boolean = false,
 > {
+    label: any;
     name_ptbr: string;
     country_code: string;
   }

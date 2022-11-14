@@ -6,6 +6,10 @@ export const SuccessContainer = styled.main`
     max-width: 1600px;
 
     display: flex;
+
+    @media (max-width: 545px) {
+       height: fit-content;
+    }  
 `
 
 export const Wrapper = styled.div`
@@ -15,10 +19,22 @@ export const Wrapper = styled.div`
 
     max-width: min(118rem, 100%);
     margin-inline: auto;
+
+    @media (max-width: 912px) {
+        flex-direction: column;
+        max-height: min(100rem, 100%);
+        justify-content: center;
+        margin-block: auto;
+        text-align: center;
+    }
+
+    @media (max-width: 545px) {
+        padding-block: 4.8rem;
+    }
 `
 
 export const TextContainer = styled.div`
-width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
@@ -64,11 +80,42 @@ width: 50%;
             transform: translateY(1.1);
         }
     }
+
+    @media (max-width: 912px) {
+        h1 {
+            font-size: 5rem;
+        }
+
+        a {
+            align-self: center;
+        }
+    }
+
+    @media (max-width: 545px) {
+        width: 65%;
+
+        h1 {
+            font-size: 9vw;
+        }
+    }
+
+    @media (max-width: 375px) {
+        a {
+            width: 28rem;
+        }
+    }
 `
 
 export const ImageContainer = styled.div`
+    width: 45%;
+
     img {
         width: 100%;
         max-width: 36rem;
     }
+
+    @media (max-width: 912px) {
+        width: 65%;
+    }
+
 `
